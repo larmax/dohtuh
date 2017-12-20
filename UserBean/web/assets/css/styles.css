@@ -1,0 +1,29 @@
+div.jumbotron{
+  background-color:#eeeeee;
+}
+
+button.btn.btn-default{
+  width:100%;
+}
+
+body{
+  background-repeat:no-repeat;
+  background-size:100%;
+  background-color:#eeeeee;
+}
+
+div.row{
+  background-color:#fff;
+  padding:10px;
+}
+
+input{
+  width:100%;
+  margin:3px;
+}
+
+button.btn.btn-default{
+  width:100%;
+  margin:5px;
+}
+
