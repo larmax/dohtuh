@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tietovarasto;
+package Tietovarastopakkaus;
 
 import java.sql.*;
 
@@ -21,13 +21,13 @@ public class YhteydenHallinta {
         }
     }
     
-    // Metodi joka sulkee tietokantayhteyden
+  
     public static void suljeYhteys(Connection suljettavaYhteys) {
         if (suljettavaYhteys != null) {
             try {
                 suljettavaYhteys.close();
             } catch (Exception e) {
-                //ei mitään tehtävissä
+              
             }
         }
     }

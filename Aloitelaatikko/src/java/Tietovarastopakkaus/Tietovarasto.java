@@ -28,8 +28,8 @@ public class Tietovarasto {
         this.salasana = salasana;
     }
     
-    public Tietovarasto(){
-        this("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/aloitelaatikko_ver1", "root", "");
+   public Tietovarasto() {
+        this("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ahven", "root", "");
     }
     
     public boolean lisaaKayttaja(Kayttaja kayttaja){
@@ -41,11 +41,13 @@ public class Tietovarasto {
             yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
             //jos yhteyttä ei saada, niin palautetaan false
             if(yhteys == null){
-                return false;
+                   return false;
             }
             
+             
+            
             // Määritellään lisäystä varten SQL-lauseet
-            String lisaaKayttajaSQL = "insert into kayttajat values(?,?,?,?,?,?,?,?)";
+            String lisaaKayttajaSQL = "insert into kayttajat values(?,?,?)";
             
             // Valmistellaan SQL-lause tietokantapalvelinta varten
             

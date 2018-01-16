@@ -5,6 +5,7 @@
  */
 package register;
 
+import Tietovarastopakkaus.Tietovarasto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -50,59 +51,43 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        Tietovarasto varasto = new Tietovarasto();
         // validointi: tarkista, etä kaikki kentät on täytetty
         UserBean user = new UserBean();
-       user.setUsername(request.getParameter("username"));
-        user.setPassword(request.getParameter("password"));
+        user.setKayttjanimi(request.getParameter("kayttajatunnus"));
+        user.setSalasana(request.getParameter("salasana"));
 
-        PrintWriter out = response.getWriter();
-        String connectionURL = "jdbc:mysql://localhost/dblogin";
-        Connection connection = null;
-        ResultSet rs = null;
-        try {
-                 ArrayList<String> errors = new ArrayList<>();
-                
-                if (user.getUsername().isEmpty()) {
-                    errors.add("Käyttäjänimi puuttuu");
-                }
-                if (user.getPassword().isEmpty()) {
-                    errors.add("Salasana puuttuu");
-                }
-                
-        
-            if(rs.next()) {
-              
-            }
-            else {
-              errors.add("Käyttäjää ei löydy");
-                
-           
-                
-                if (errors.isEmpty()) {
-                    // jos on, ohjaa sivulle
-                    request.getRequestDispatcher("succes.jsp").forward(request, response);
-                } else {
-                    //jos ei ole, ohjaa takaisin register-sivulle ja välitä virheilmoitukset ja lomakkeen tiedot takaisin
-                    request.setAttribute("errors", errors);
-                    request.setAttribute("user", user);
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
-                }
-                
-            }
-            // jos on, ohjaa succes-sivulle
-            //jos ei ole, ohjaa takaisin register-sivulle ja välitä lomakkeen tiedot takaisin
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
-            
+        ArrayList<String> errors = new ArrayList<>();
+
+        if (user.getKayttajanimi().isEmpty()) {
+            errors.add("Käyttäjänimi puuttuu");
         }
+        if (user.getSalasana().isEmpty()) {
+            errors.add("Salasana puuttuu");
+        }
+
+        if (errors.isEmpty()) {
+            // jos on, ohjaa sivulle
+            varasto.lisaaKayttaja(user);
+            request.getRequestDispatcher("succes.jsp").forward(request, response);
+        } else {
+            //jos ei ole, ohjaa takaisin register-sivulle ja välitä virheilmoitukset ja lomakkeen tiedot takaisin
+            request.setAttribute("errors", errors);
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
+
     }
+   
+
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
