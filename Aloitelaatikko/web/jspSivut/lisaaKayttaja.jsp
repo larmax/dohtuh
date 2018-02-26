@@ -15,13 +15,13 @@
     </head>
     <body>
         <h1>Uuden käyttäjän lisäys</h1>
-        <form name="lisays" action="../../Aloitelaatikko_ver2/lisaaKayttaja" method="post">
-            <input type="text" name="etunimi" placeholder="Etunimi"><br>
-            <input type="text" name="sukunimi" placeholder="Sukunimmi"><br>
-            <input type="email" name="email" placeholder="Email"><br>
-            <input type="text" name="kayttajatunnus" placeholder="Käyttäjätunnus"><br>
-            <input type="password" name="salasana" placeholder="Salasana"><br>
-            <input type="text" name="puhelin" placeholder="Puhelin"><br>
+        <form name="lisays" action="../../Aloitelaatikko/lisaaKayttaja" method="post">
+            <input type="text" name="etunimi" placeholder="Etunimi" required><br>
+            <input type="text" name="sukunimi" placeholder="Sukunimmi" required><br>
+            <input type="email" name="email" placeholder="Email" required=""><br>
+            <input type="text" name="kayttajatunnus" placeholder="Käyttäjätunnus" required><br>
+            <input type="password" name="salasana" placeholder="Salasana" required><br>
+            <input type="text" name="puhelin" placeholder="Puhelin" required><br>
             <!-- Ei KÄYTÖSSÄ: <input type="date" name="luontipaivays"><br> -->
             
             <input type="reset" value="Tyhjennä" name="reset" />

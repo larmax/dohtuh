@@ -35,6 +35,10 @@ public class Kayttaja {
         this.luontipaivays = luontipaivays;
     }
 
+    public Kayttaja() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getKayttajaID() {
         return kayttajaID;
     }
@@ -65,6 +69,10 @@ public class Kayttaja {
 
     public String getLuontipaivays() {
         return luontipaivays;
+    }
+
+    public int getRyhma() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

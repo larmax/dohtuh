@@ -66,11 +66,21 @@ public class RegisterController extends HttpServlet {
         if (user.getSalasana().isEmpty()) {
             errors.add("Salasana puuttuu");
         }
+   Tietovarasto db = new Tietovarasto();
+        
+        if (!db.usernameAvailable(user.getKayttajanimi())){
+            errors.add("Käyttäjänimi on jo käytössä");
+        }
+//        if (!db.emailAvailable(user.getEmail())){
+//            errors.add("Sähköpostitunnuksella on jo tili");
+//        }
 
-        if (errors.isEmpty()) {
+        if (errors.isEmpty() && db.lisaaKayttaja(user)) {
             // jos on, ohjaa sivulle
-            varasto.lisaaKayttaja(user);
+             varasto.lisaaKayttaja(user);
             request.getRequestDispatcher("succes.jsp").forward(request, response);
+            
+
         } else {
             //jos ei ole, ohjaa takaisin register-sivulle ja välitä virheilmoitukset ja lomakkeen tiedot takaisin
             request.setAttribute("errors", errors);
@@ -86,9 +96,13 @@ public class RegisterController extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-        public String getServletInfo() {
-        return "Short description";
+    
     }// </editor-fold>
 
-}
+
+//@Override
+//        public String getServletInfo() {
+//   
+//        
+//            return "Short description";
+//        }

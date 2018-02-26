@@ -22,7 +22,7 @@
                 <tr>
                     <td><%=aloite.getAloiteID() %></td>
                     <!— Lähetetään aloitenimen lisäksi aloiteID ja aloitekuvaus servletille-->
-                    <td><a herf='lisaaToimenpide.jsp?aloiteID=<%= aloite.getAloiteID() %>
+                    <td><a href='lisaaToimenpide.jsp?aloiteID=<%= aloite.getAloiteID() %>
                            &aloitekuvaus=<%= aloite.getAloitekuvaus() %>'><%= 
                            aloite.getAloitenimi() %></a></td>
                 </tr>

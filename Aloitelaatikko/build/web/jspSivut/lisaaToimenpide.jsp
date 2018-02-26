@@ -22,7 +22,7 @@
             String aloitekuvaus = request.getParameter("aloitetpakkaus");
            %>
            <p>Aloitteen kuvaus <%= aloitekuvaus %> </p>
-           <form action= "../../Aloitelaatikko_ver1/lisaaToimenpide" method="post">
+           <form action= "../../Aloitelaatikko/lisaaToimenpide" method="post">
                  Toimenpide:<br>
                  <textarea name ="kuvaus" rows="4" cols="30"> </textarea><br>
                  Toimeenpiteen kirjasi: <br>

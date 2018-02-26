@@ -29,7 +29,7 @@ public class Tietovarasto {
     }
     
    public Tietovarasto() {
-        this("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ahven", "root", "");
+        this("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/aloitelaatikko", "root", "");
     }
     
     public boolean lisaaKayttaja(Kayttaja kayttaja){
@@ -39,15 +39,17 @@ public class Tietovarasto {
         try{
             // Otetaan yhteys tietokantaan
             yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
+            System.out.println("Yhteys avattu: " + url);
             //jos yhteyttä ei saada, niin palautetaan false
             if(yhteys == null){
+                System.out.println("Tietokantayhteyttä ei saatu avattua");
                    return false;
             }
             
              
             
             // Määritellään lisäystä varten SQL-lauseet
-            String lisaaKayttajaSQL = "insert into kayttajat values(?,?,?)";
+            String lisaaKayttajaSQL = "insert into kayttajat values(?,?,?,?,?,?,?,?)";
             
             // Valmistellaan SQL-lause tietokantapalvelinta varten
             
@@ -65,7 +67,7 @@ public class Tietovarasto {
             return lisayslause.executeUpdate() > 0;
         }catch(Exception ex){
             // Jos tuli virhe, niin hypätään tänne
-            ex.getMessage();
+            System.out.println(ex.getMessage());
             return false;
         }finally{
            // Suljetaan yhteysx tietokantaa
@@ -132,8 +134,8 @@ public class Tietovarasto {
             lisayslause.setInt(1, toimenpide.getToimenpideID());
             lisayslause.setString(2, toimenpide.getKuvaus());
             lisayslause.setString(3, toimenpide.getPvm());
-            lisayslause.setString(4, toimenpide.getKayttajaID());
-            lisayslause.setString(5, toimenpide.getAloiteID());
+            lisayslause.setInt(4, toimenpide.getKayttajaID());
+            lisayslause.setInt(5, toimenpide.getAloiteID());
 
             //Seuoritetaan palvelimella SQL-lause
             return lisayslause.executeUpdate() > 0;
@@ -147,5 +149,9 @@ public class Tietovarasto {
             YhteydenHallinta.suljeLause(lisayslause);
             YhteydenHallinta.suljeYhteys(yhteys);
         }
+    }
+
+    public Kayttaja login(String kayttajatunnus, String salasana) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

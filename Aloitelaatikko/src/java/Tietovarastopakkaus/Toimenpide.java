@@ -15,10 +15,10 @@ public class Toimenpide {
     private int toimenpideID;
     private String kuvaus;
     private String pvm;
-    private String kayttajaID;
-    private String aloiteID;
+    private int kayttajaID;
+    private int aloiteID;
 
-    public Toimenpide(int toimenpideID, String kuvaus, String pvm, String kayttajaID, String aloiteID) {
+    public Toimenpide(int toimenpideID, String kuvaus, String pvm, int kayttajaID, int aloiteID) {
         this.kuvaus = kuvaus;
         this.pvm = pvm;
         this.kayttajaID = kayttajaID;
@@ -34,11 +34,11 @@ public class Toimenpide {
         return pvm;
     }
 
-    public String getKayttajaID() {
+    public int getKayttajaID() {
         return kayttajaID;
     }
 
-    public String getAloiteID() {
+    public int getAloiteID() {
         return aloiteID;
     }
     

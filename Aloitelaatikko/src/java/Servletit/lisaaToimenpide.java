@@ -6,6 +6,7 @@
 package Servletit;
 
 import Tietovarastopakkaus.Tietovarasto;
+import Tietovarastopakkaus.Toimenpide;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -64,7 +65,7 @@ public class lisaaToimenpide extends HttpServlet {
             out.println("Luontipäivä: "+luontipaivays+"<br>");
             
             //Tallennetaan toimenpide. Luodaan toimenpide-olio lomakkeelta
-            Toimenpide toimipide = new Toimenpide (0,kuvaus,luontipaivays,Integer.paseInt(kayttajaID),Integer.parseInt(aloiteID));
+            Toimenpide toimipide = new Toimenpide (0,kuvaus,luontipaivays,Integer.parseInt(kayttajaID),Integer.parseInt(aloiteID));
         }
     }
 

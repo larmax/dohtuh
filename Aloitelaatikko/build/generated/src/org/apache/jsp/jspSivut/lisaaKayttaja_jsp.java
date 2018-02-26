@@ -52,7 +52,7 @@ public final class lisaaKayttaja_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <h1>Uuden käyttäjän lisäys</h1>\n");
-      out.write("        <form name=\"lisays\" action=\"../../Aloitelaatikko_ver2/lisaaKayttaja\" method=\"post\">\n");
+      out.write("        <form name=\"lisays\" action=\"../../Aloitelaatikko/lisaaKayttaja\" method=\"post\">\n");
       out.write("            <input type=\"text\" name=\"etunimi\" placeholder=\"Etunimi\"><br>\n");
       out.write("            <input type=\"text\" name=\"sukunimi\" placeholder=\"Sukunimmi\"><br>\n");
       out.write("            <input type=\"email\" name=\"email\" placeholder=\"Email\"><br>\n");

@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in Project Properties. 
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -70,6 +70,40 @@ public class Tietovarasto {
            // Suljetaan yhteysx tietokantaa
            YhteydenHallinta.suljeLause(lisayslause);
            YhteydenHallinta.suljeYhteys(yhteys);
+           
         }    
+    }
+    public boolean usernameAvailable(String kayttajanimmi) {
+        //Määritellään tietokannan käsittelyyn tarvittavat oliomuuttujat
+        Connection yhteys = null;
+        PreparedStatement hakulause = null;
+        ResultSet tulosjoukko = null;
+        try {
+            //Avataan tietokantayhteys
+            yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajanimi, salasana);
+            //tarkistetaan onko yhteys tietokantaan olemassa
+            if (yhteys == null) {
+                return false;
+            }
+            //Määritellään SQL-lause, jolla haetaan kaikki aloitteet
+            String haeKaikkiSql = "SELECT * FROM kayttaja WHERE Kayttajanimi=?";
+            //Suoritetaan tietohaku
+            hakulause = yhteys.prepareStatement(haeKaikkiSql);
+            hakulause.setString(1, kayttajanimmi);
+            tulosjoukko = hakulause.executeQuery();
+            if (tulosjoukko.next()) {
+                return false;
+            } else {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            YhteydenHallinta.suljeTulosjoukko(tulosjoukko);
+            YhteydenHallinta.suljeLause(hakulause);
+            YhteydenHallinta.suljeYhteys(yhteys);
+        }
     }
 }
