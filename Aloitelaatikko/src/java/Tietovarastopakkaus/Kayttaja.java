@@ -18,18 +18,18 @@ public class Kayttaja {
     private String etunimi;
     private String sukunimi;
     private String email;
-    private String kayttajaTunnus;
+    private String kayttajatunnus;
     private String salasana;
     private String puhelin; 
     private String luontipaivays;
 
     public Kayttaja(int kayttajaID, String etunimi, String sukunimi, String email, 
-            String kayttajaTunnus, String salasana, String puhelin, String luontipaivays) {
+            String kayttajatunnus, String salasana, String puhelin, String luontipaivays) {
         this.kayttajaID = kayttajaID;
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
         this.email = email;
-        this.kayttajaTunnus = kayttajaTunnus;
+        this.kayttajatunnus = kayttajatunnus;
         this.salasana = salasana;
         this.puhelin = puhelin;
         this.luontipaivays = luontipaivays;
@@ -56,7 +56,7 @@ public class Kayttaja {
     }
 
     public String getKayttajaTunnus() {
-        return kayttajaTunnus;
+        return kayttajatunnus;
     }
 
     public String getSalasana() {
@@ -75,6 +75,9 @@ public class Kayttaja {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public String toString(){
+        return kayttajaID + "," + etunimi + "," + sukunimi  + "," + email + "," + kayttajatunnus + "," + salasana + "," + puhelin + "," + luontipaivays ;
+    }
 
     
 }

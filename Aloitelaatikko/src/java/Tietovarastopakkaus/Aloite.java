@@ -45,6 +45,8 @@ public class Aloite {
         return kayttajaID;
     }
     
-    
+    public String toString() {
+        return aloiteID + ", " + aloitenimi + ", " + aloitekuvaus + ", " + pvm + ", " + kayttajaID;
+    }
     
 }
