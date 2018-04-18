@@ -14,6 +14,8 @@ import java.util.Date;
  */
 public class Kayttaja {
     
+    
+    Tietovarasto varasto = new Tietovarasto();
     private int kayttajaID;
     private String etunimi;
     private String sukunimi;
@@ -22,9 +24,13 @@ public class Kayttaja {
     private String salasana;
     private String puhelin; 
     private String luontipaivays;
+    private int ryhmaID;
+private String Aktiivinen;
+  
+  
 
     public Kayttaja(int kayttajaID, String etunimi, String sukunimi, String email, 
-            String kayttajatunnus, String salasana, String puhelin, String luontipaivays) {
+            String kayttajatunnus, String salasana, String puhelin, String luontipaivays, int ryhmaID, String Aktiivinen) {
         this.kayttajaID = kayttajaID;
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
@@ -33,11 +39,16 @@ public class Kayttaja {
         this.salasana = salasana;
         this.puhelin = puhelin;
         this.luontipaivays = luontipaivays;
+        this.ryhmaID = ryhmaID;
+        this.Aktiivinen = Aktiivinen;
     }
 
-    public Kayttaja() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Kayttaja(int kayttajaID) {
+      this.kayttajaID = kayttajaID;
     }
+
+    
+    
 
     public int getKayttajaID() {
         return kayttajaID;
@@ -71,8 +82,11 @@ public class Kayttaja {
         return luontipaivays;
     }
 
-    public int getRyhma() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getRyhmaID() {
+       return ryhmaID;
+    }
+      public String getAktiivinen() {
+        return Aktiivinen;
     }
     
     public String toString(){

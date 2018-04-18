@@ -52,6 +52,8 @@ public class lisaaKayttaja extends HttpServlet {
         String kayttajatunnus = request.getParameter("kayttajatunnus");
         String salasana = request.getParameter("salasana");
         String puhelin = request.getParameter("puhelin");
+        String ryhmaID = request.getParameter("ryhmaID");
+        String aktiivinen = "Aktiivinen";
         //MUUTETTU: String luontipaivays = request.getParameter("luontipaivays");
         String luontipaivays = sdf.format(date);
             
@@ -72,10 +74,13 @@ public class lisaaKayttaja extends HttpServlet {
             out.println("Salasana: "+salasana+"<br>");
             out.println("Puhelin: "+puhelin+"<br>");
             out.println("Luontipäivä: "+luontipaivays+"<br>");
+             out.println("RyhmäID: "+ryhmaID+"<br>");
+              out.println("Aktiivinen: "+aktiivinen+"<br>");
             
+int ryhmaIDint = Integer.parseInt(ryhmaID);
             // Luodaan käyttäjä-olio lomakkeelta saatujen tietojen avulla
             Kayttaja kayttaja = new Kayttaja(0, etunimi, sukunimi, email, 
-                    kayttajatunnus, salasana, puhelin, luontipaivays);
+                    kayttajatunnus, salasana, puhelin, luontipaivays, ryhmaIDint, aktiivinen);
             
             // Kutusutaan metodia lisaaKayttaja. Metodille väliteään kayttaja-olio
             if(tietovarasto.lisaaKayttaja(kayttaja)){

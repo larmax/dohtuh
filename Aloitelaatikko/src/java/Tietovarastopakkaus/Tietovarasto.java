@@ -20,6 +20,7 @@ public class Tietovarasto {
     private String url;
     private String kayttajatunnus;
     private String salasana;
+    Enum Aktiivinen;
 
     public Tietovarasto(String ajuri, String url, String kayttajatunnus, String salasana) {
         this.ajuri = ajuri;
@@ -47,7 +48,7 @@ public class Tietovarasto {
             }
 
             // Määritellään lisäystä varten SQL-lauseet
-            String lisaaKayttajaSQL = "insert into kayttajat values(?,?,?,?,?,?,?,?)";
+            String lisaaKayttajaSQL = "insert into kayttajat (kayttajaID, etunimi, sukunimi, email, kayttajatunnus, salasana, puhelin, luontipaivays, ryhmaID, Aktiivinen) values(?,?,?,?,?,?,?,?,?,?)";
 
             // Valmistellaan SQL-lause tietokantapalvelinta varten
             lisayslause = yhteys.prepareStatement(lisaaKayttajaSQL);
@@ -60,11 +61,15 @@ public class Tietovarasto {
             lisayslause.setString(6, kayttaja.getSalasana());
             lisayslause.setString(7, kayttaja.getPuhelin());
             lisayslause.setString(8, kayttaja.getLuontipaivays());
+            lisayslause.setInt(9, kayttaja.getRyhmaID());
+            lisayslause.setString(10, "Aktiivinen");
             // Suoritetaan palvelimella SQL-lause
-            return lisayslause.executeUpdate() > 0;
-        } catch (Exception ex) {
+                return lisayslause.executeUpdate() > 0;
+        } catch (SQLException ex) {
             // Jos tuli virhe, niin hypätään tänne
-            System.out.println(ex.getMessage());
+                 System.out.println("Virhettä Pukkaa");
+            ex.printStackTrace();
+           
             return false;
         } finally {
             // Suljetaan yhteysx tietokantaa
@@ -86,10 +91,10 @@ public class Tietovarasto {
             }
 
             // Määritellään lisäystä varten SQL-lauseet
-            String lisaaKayttajaSQL = "insert into aloitteet values(?,?,?,?,?)";
+            String lisaaAloiteSQL = "insert into aloitteet values(?,?,?,?,?)";
 
             // Valmistellaan SQL-lause tietokantapalvelinta varten
-            lisayslause = yhteys.prepareStatement(lisaaKayttajaSQL);
+            lisayslause = yhteys.prepareStatement(lisaaAloiteSQL);
 
             lisayslause.setInt(1, aloite.getAloiteID());
             lisayslause.setString(2, aloite.getAloitenimi());
@@ -101,7 +106,10 @@ public class Tietovarasto {
             return lisayslause.executeUpdate() > 0;
         } catch (Exception ex) {
             // Jos tuli virhe, niin hypätään tänne
+                   System.out.println("Virhettä Pukkaa");
             ex.getMessage();
+      
+            ex.printStackTrace();
             return false;
         } finally {
             // Suljetaan yhteysx tietokantaa
@@ -120,7 +128,7 @@ public class Tietovarasto {
             //jos yhteyttä ei saada, niin palautetaan false
             if (yhteys == null) {
                 return false;
-            }
+            }else{
 
             //Määritellään lisäystä varten SQL-lauseet
             String lisaaToimenpideSQL = "insert into toimenpiteet values(?,?,?,?,?)";
@@ -136,7 +144,7 @@ public class Tietovarasto {
 
             //Seuoritetaan palvelimella SQL-lause
             return lisayslause.executeUpdate() > 0;
-
+            }
         } catch (SQLException ex) {
             //Jos tuli virhe niin hypätään tänne
             ex.printStackTrace();
@@ -149,7 +157,7 @@ public class Tietovarasto {
     }
 
     public Kayttaja login(String kayttajatunnus, String salasana) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("login ei oo valmis."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public List<Kayttaja> haeKaikkiKayttajat() {
@@ -182,10 +190,11 @@ public class Tietovarasto {
                 String salasana = tulosjoukko.getString("salasana");
                 String puhelin = tulosjoukko.getString("puhelin");
                 String luontipaivays = tulosjoukko.getString("luontipaivays");
-//                int ryhmaID = tulosjoukko.getInt("ryhmaID");
+                int ryhmaID = tulosjoukko.getInt("ryhmaID");
+                String aktiivinen = tulosjoukko.getString("aktiivinen");
 
                 // Lisätään Kayttaja-olio listaan kayttajat
-                kayttajat.add(new Kayttaja(kayttajaID, etunimi, sukunimi, email, kayttajatunnus, salasana, puhelin, luontipaivays));
+                kayttajat.add(new Kayttaja(kayttajaID, etunimi, sukunimi, email, kayttajatunnus, salasana, puhelin, luontipaivays, ryhmaID, aktiivinen));
 
             }
         } catch (SQLException e) {
@@ -199,6 +208,11 @@ public class Tietovarasto {
         }
         // Palautetaan lista käyttäjistä
         return kayttajat;
+    }
+
+    public enum Aktiivinen {
+        Aktiivinen,
+        Poistettu
     }
 
     public List<Aloite> haeKaikkiAloitteet() {
@@ -245,38 +259,127 @@ public class Tietovarasto {
         // Palautetaan lista käyttäjistä
         return aloitteet;
     }
-    public void poistaKayttaja(int id){
-                Connection yhteys = null;
-        PreparedStatement poistolause = null;
 
+    public void poistaKayttaja(int id) {
+        Connection yhteys = null;
+        PreparedStatement poistolause = null;
+        System.out.println("Käyttäjä: " + id);
         try {
             // Otetaan yhteys tietokantaan
             yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
             System.out.println("Yhteys avattu: " + url);
+
             //jos yhteyttä ei saada, niin palautetaan false
             if (yhteys == null) {
                 System.out.println("Tietokantayhteyttä ei saatu avattua");
-            
+
             }
 
             // Määritellään lisäystä varten SQL-lauseet
-            String poistaKayttajaSQL = "UPDATE Kayttajat" +
-"SET kayttajanimi = 'poistettu', etunimi = 'poistettu', sukunimi = 'poistettu',email = 'poistettu', email = 'poistettu', salasana 'poistettu'" +
-"WHERE kayttajaID = ?;";
+            String poistaKayttajaSQL = "UPDATE kayttajat "
+                    + "SET Aktiivinen = \"Poistettu\""
+                    + "WHERE kayttajaID = ?;";
+
+            System.out.println(poistaKayttajaSQL);
 
             // Valmistellaan SQL-lause tietokantapalvelinta varten
             poistolause = yhteys.prepareStatement(poistaKayttajaSQL);
 
-            poistolause.setInt(1, kayttaja.getKayttajaID());
-            
-    
-          } catch (Exception ex) {
+            poistolause.setInt(1, id);
+            System.out.println(poistolause.executeUpdate() + " riviä poistettu");
+
+        } catch (SQLException ex) {
             // Jos tuli virhe, niin hypätään tänne
-            System.out.println(ex.getMessage());
-            
+            ex.printStackTrace();
+
         } finally {
             // Suljetaan yhteysx tietokantaa
             YhteydenHallinta.suljeLause(poistolause);
             YhteydenHallinta.suljeYhteys(yhteys);
         }
+    }
+    public void muokkaaAloitetta(Aloite aloite) {
+        // Luodaan lista käyttäjistä
+        List<Aloite> aloitteet = new ArrayList<>();
+        // Määritellään tietokannan käsittelyyn tarvittavat oliomuuttujat
+        Connection yhteys = null;
+        PreparedStatement lisayslause = null;
+        ResultSet tulosjoukko = null;
+        
+      
+        
+        try {
+            // Avataan tietokantayhteys
+            yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
+            // Tarkistetaan onko yhteys tietokantaan olemassa
+            if (yhteys != null) {
+                 lisayslause.setInt(3, aloite.getAloiteID());
+                 lisayslause.setString(3, aloite.getAloitenimi());
+                  lisayslause.setString(3, aloite.getAloitekuvaus());
+                  int aloiteID = aloite.getAloiteID();
+                  String aloitenimi = aloite.getAloitenimi();
+                  String aloitekuvaus = aloite.getAloitekuvaus();
+                // Määritellään SQL-lause, jolla haetaan kaikki käyttäjät
+                String muokkaaAloitettaSQL = "UPDATE aloitteet SET alotekuvaus = "+aloitekuvaus+", Aloitenimi= "+aloitenimi+" WHERE aloiteID = "+aloiteID+";";
+                // Suoritetaan tietokantahaku
+                lisayslause = yhteys.prepareStatement(muokkaaAloitettaSQL);
+                
+                // Talletetaan kaikki käyttäjät oliomuuttujaan tulosjoukko
+                tulosjoukko = lisayslause.executeQuery();
+            }
+           
+        } catch (SQLException e) {
+            System.out.println("Virhettä pukkaa!" + e.getMessage());
+           
+        } finally {
+            // Suljetaan yhteydet
+            YhteydenHallinta.suljeTulosjoukko(tulosjoukko);
+            YhteydenHallinta.suljeLause(lisayslause);
+            YhteydenHallinta.suljeYhteys(yhteys);
+        }
+      
+        
+    }
+    public Aloite haeAloite(int aloiteID) {
+      
+      
+        // Määritellään tietokannan käsittelyyn tarvittavat oliomuuttujat
+        Connection yhteys = null;
+        PreparedStatement hakulause = null;
+        ResultSet tulosjoukko = null;
+        try {
+            // Avataan tietokantayhteys
+            yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
+            // Tarkistetaan onko yhteys tietokantaan olemassa
+            if (yhteys != null) {
+                // Määritellään SQL-lause, jolla haetaan kaikki käyttäjät
+                String haeKaikkiSql = "select * WHERE aloiteID = ? from aloitteet";
+                // Suoritetaan tietokantahaku
+                hakulause = yhteys.prepareStatement(haeKaikkiSql);
+                hakulause.setInt(1,aloiteID);
+                // Talletetaan kaikki käyttäjät oliomuuttujaan tulosjoukko
+                tulosjoukko = hakulause.executeQuery();
+            }
+            // Luodaan lista käyttäjistä
+          
+            int kayttajaID = tulosjoukko.getInt("kayttajaID");
+               
+                String aloitenimi = tulosjoukko.getString("aloitenimi");
+                String aloitekuvaus = tulosjoukko.getString("aloitekuvaus");
+                 String pvm = tulosjoukko.getString("pvm");
+            
+                Aloite aloite = new Aloite(aloiteID, aloitenimi, aloitekuvaus, pvm, kayttajaID );
+                return aloite;
+        } catch (SQLException e) {
+            System.out.println("Virhettä pukkaa!" + e.getMessage());
+            return null;
+        } finally {
+            // Suljetaan yhteydet
+            YhteydenHallinta.suljeTulosjoukko(tulosjoukko);
+            YhteydenHallinta.suljeLause(hakulause);
+            YhteydenHallinta.suljeYhteys(yhteys);
+        }
+        // Palautetaan lista käyttäjistä
+        
+    }
 }

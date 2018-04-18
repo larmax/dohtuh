@@ -3,10 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/s1601385/Desktop/DOHTUH/Aloitelaatikko/src/java/Tietovarastopakkaus/Kayttaja.java</file>
-            <file>file:/C:/Users/s1601385/Desktop/DOHTUH/Aloitelaatikko/src/java/Tietovarastopakkaus/Tietovarasto.java</file>
-            <file>file:/C:/Users/s1601385/Desktop/DOHTUH/Aloitelaatikko/src/java/Servletit/login.java</file>
-            <file>file:/C:/Users/s1601385/Desktop/DOHTUH/Aloitelaatikko/src/java/Tietovarastopakkaus/Toimenpide.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Servletit/lisaaToimenpide.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/lisaaToimenpide.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/lisaaKayttaja.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Servletit/muokkaaAloitetta.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Tietovarastopakkaus/YhteydenHallinta.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Tietovarastopakkaus/Aloite.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/lisaaAloite.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/tulostaAloitteet.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Tietovarastopakkaus/Kayttaja.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Servletit/lisaaKayttaja.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Servletit/lisaaAloite.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/Rekisteröityminen.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Tietovarastopakkaus/Tietovarasto.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/src/java/Tietovarastopakkaus/Toimenpide.java</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/poistaKayttaja.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/jspSivut/muokkaaAloitetta.jsp</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/s1601385/Desktop/dohtuh/Aloitelaatikko/web/index.html</file>
         </group>
     </open-files>
 </project-private>
