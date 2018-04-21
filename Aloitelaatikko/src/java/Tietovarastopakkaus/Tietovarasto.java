@@ -360,7 +360,7 @@ public class Tietovarasto {
                 // Talletetaan kaikki käyttäjät oliomuuttujaan tulosjoukko
                 tulosjoukko = hakulause.executeQuery();
             }
-            // Luodaan lista käyttäjistä
+           
           
             int kayttajaID = tulosjoukko.getInt("kayttajaID");
                
@@ -382,4 +382,54 @@ public class Tietovarasto {
         // Palautetaan lista käyttäjistä
         
     }
+    
+    public boolean tarkistaLogin (String salis, String knimi){
+        Connection yhteys = null;
+        PreparedStatement hakulause = null;
+        ResultSet tulosjoukko = null;
+          try {
+            // Avataan tietokantayhteys
+            yhteys = YhteydenHallinta.avaaYhteys(ajuri, url, kayttajatunnus, salasana);
+            // Tarkistetaan onko yhteys tietokantaan olemassa
+            if (yhteys != null) {
+                // Määritellään SQL-lause, jolla haetaan kaikki käyttäjät
+                String haeKaikkiSql = "select salasana from kayttajat WHERE kayttajatunnus = ?" + "select kayttajatunnus from kayttajat WHERE kayttajatunnus = ?";
+                // Suoritetaan tietokantahaku
+                hakulause = yhteys.prepareStatement(haeKaikkiSql);
+         
+                
+                
+                
+                hakulause.setString(1,knimi);
+                hakulause.setString(2,knimi);
+                // Talletetaan kaikki käyttäjät oliomuuttujaan tulosjoukko
+                tulosjoukko = hakulause.executeQuery();
+                
+                //tarkistetaan kirjautumistiedot
+                String salis2 = tulosjoukko.getString("salasana");
+                String knimi2= tulosjoukko.getString("kayttajatunnus");
+           
+                
+                if(salis2.equals(salis)){
+                    return true;
+                }else{
+                    return false;
+                }
+                
+                
+            }  
+        } catch (SQLException e) {
+            System.out.println("Virhettä pukkaa!" + e.getMessage());
+            return false;
+                
+         } finally {
+            // Suljetaan yhteydet
+            YhteydenHallinta.suljeTulosjoukko(tulosjoukko);
+            YhteydenHallinta.suljeLause(hakulause);
+            YhteydenHallinta.suljeYhteys(yhteys);
+        }
+          
+        return false;
+    }
+    
 }

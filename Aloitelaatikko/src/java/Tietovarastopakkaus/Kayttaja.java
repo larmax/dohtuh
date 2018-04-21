@@ -15,7 +15,7 @@ import java.util.Date;
 public class Kayttaja {
     
     
-    Tietovarasto varasto = new Tietovarasto();
+    private Tietovarasto varasto = new Tietovarasto();
     private int kayttajaID;
     private String etunimi;
     private String sukunimi;
@@ -43,8 +43,9 @@ private String Aktiivinen;
         this.Aktiivinen = Aktiivinen;
     }
 
-    public Kayttaja(int kayttajaID) {
-      this.kayttajaID = kayttajaID;
+    public Kayttaja(String ktunnus, String salis) {
+     this.kayttajatunnus = ktunnus;
+     this.salasana = salis;
     }
 
     
@@ -91,6 +92,50 @@ private String Aktiivinen;
     
     public String toString(){
         return kayttajaID + "," + etunimi + "," + sukunimi  + "," + email + "," + kayttajatunnus + "," + salasana + "," + puhelin + "," + luontipaivays ;
+    }
+
+    public void setVarasto(Tietovarasto varasto) {
+        this.varasto = varasto;
+    }
+
+    public void setKayttajaID(int kayttajaID) {
+        this.kayttajaID = kayttajaID;
+    }
+
+    public void setEtunimi(String etunimi) {
+        this.etunimi = etunimi;
+    }
+
+    public void setSukunimi(String sukunimi) {
+        this.sukunimi = sukunimi;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setKayttajatunnus(String kayttajatunnus) {
+        this.kayttajatunnus = kayttajatunnus;
+    }
+
+    public void setSalasana(String salasana) {
+        this.salasana = salasana;
+    }
+
+    public void setPuhelin(String puhelin) {
+        this.puhelin = puhelin;
+    }
+
+    public void setLuontipaivays(String luontipaivays) {
+        this.luontipaivays = luontipaivays;
+    }
+
+    public void setRyhmaID(int ryhmaID) {
+        this.ryhmaID = ryhmaID;
+    }
+
+    public void setAktiivinen(String Aktiivinen) {
+        this.Aktiivinen = Aktiivinen;
     }
 
     
