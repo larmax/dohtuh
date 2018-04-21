@@ -1,0 +1,22 @@
+SMAP
+poistaKayttaja_jsp.java
+JSP
+*S JSP
+*F
++ 0 poistaKayttaja.jsp
+jspSivut/poistaKayttaja.jsp
+*L
+5,41:46
+45,6:87
+50,3:93
+53:96,3
+54,2:99
+56,2:101,3
+58:107
+59,6:108,3
+65,2:126
+67:128,3
+68,3:131
+70,14:134
+83,7:148
+*E
