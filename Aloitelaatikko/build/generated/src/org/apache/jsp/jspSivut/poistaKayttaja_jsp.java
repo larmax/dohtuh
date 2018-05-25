@@ -71,7 +71,7 @@ public final class poistaKayttaja_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("       \n");
       out.write("        \n");
       out.write("        <tr>\n");
-      out.write("            <th>KayttajaID()%></th>\n");
+      out.write("            <th>KayttajaID</th>\n");
       out.write("            <th>KayttajaTunnus</th>\n");
       out.write("            <th>Etunimi</th>\n");
       out.write("            <th>Salasana</th>\n");
@@ -94,7 +94,7 @@ public final class poistaKayttaja_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <tr>\n");
       out.write("            \n");
       out.write("                            <td>");
-      out.print( kayttaja.getKayttajaID());
+      out.print( kayttaja.getKayttajaID() );
       out.write("</td>\n");
       out.write("<!--                            <!— Lähetetään aloitenimien lisäksi aloiteID ja aloitekuvaus jsp-sivulle-->\n");
       out.write("                           \n");

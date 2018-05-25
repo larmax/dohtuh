@@ -52,8 +52,9 @@ public final class Valikko_005fkayttaja_jsp extends org.apache.jasper.runtime.Ht
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <h1>Tervetuloa käyttämään aloitelaatikkoa!</h1>\n");
-      out.write("        <a href=\"../../Aloitelaatikko_ver2/jspSivut/lisaaAloite.jsp\">Lisää aloite</a>\n");
-      out.write("        <a href=\"../../Aloitelaatikko_ver2/omatAloitteet\">Omat aloitteet</a>\n");
+      out.write("        <a href=\"../../Aloitelaatikko/jspSivut/lisaaAloite.jsp\">Lisää aloite</a>\n");
+      out.write("        <a href=\"../../Aloitelaatikko/jspSivut/omatAloitteet\">Omat aloitteet</a>\n");
+      out.write("          <a href=\"muokkaaAloitetta\">muokkaa aloitetta</a>\n");
       out.write("        \n");
       out.write("        \n");
       out.write("\n");

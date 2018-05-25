@@ -26,7 +26,7 @@
                     <p>Tästä voit lisätä uuden käyttäjän tietokantaan.</p>
                 </div>
                 <div class="col-md-6 col-md-offset-0">
-                    <form action="../../Aloitelaatikko/lisaaKayttaja" method="post">
+                    <form action="lisaakayttaja" method="post">
                         <input type="text" name="etunimi" placeholder="Etunimi"><br>
                         <input type="text" name="sukunimi" placeholder="Sukunimmi"><br>
                         <input type="email" name="email" placeholder="Email"><br>

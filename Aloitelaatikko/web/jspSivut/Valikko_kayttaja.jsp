@@ -15,6 +15,7 @@
         <h1>Tervetuloa käyttämään aloitelaatikkoa!</h1>
         <a href="../../Aloitelaatikko/jspSivut/lisaaAloite.jsp">Lisää aloite</a>
         <a href="../../Aloitelaatikko/jspSivut/omatAloitteet">Omat aloitteet</a>
+          <a href="muokkaaAloitetta">muokkaa aloitetta</a>
         
         
 

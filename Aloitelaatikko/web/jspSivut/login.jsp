@@ -36,8 +36,8 @@
                     </div>
                     <div class="col-md-4 col-md-offset-0">
                         <h2>Kirjaudu sisään </h2>
-                        <form name="kirjautuminen" action="../../Aloitelaatikko_ver2/lisaaKayttaja" method="post">
-                            <input type="text" name="kayttajatunnus" placeholder="ktunnus"><br>
+                        <form name="kirjautuminen" action="login" method="post">
+                            <input type="text" name="kayttajatunnus" placeholder="kayttajatunnus"><br>
                             <input type="password" name="salasana" placeholder="salasana"><br>
                             <button class="btn btn-default btn-sm" type="submit">Kirjaudu sisään</button>
                             

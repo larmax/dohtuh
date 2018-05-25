@@ -37,19 +37,24 @@ public class login extends HttpServlet {
         
         
         
-        String ktunnus = request.getParameter("ktunnus");
+        String ktunnus = request.getParameter("kayttajatunnus");
         String salis = request.getParameter("salasana");
+        System.out.println("K: " + ktunnus);
+        System.out.println("S: " + salis);
+         Tietovarasto varasto = new Tietovarasto();
+        Kayttaja kayttaja = varasto.tarkistaLogin(ktunnus, salis);
+       
+   
         
-        Kayttaja kayttaja = new Kayttaja(ktunnus, salis);
-        Tietovarasto varasto = new Tietovarasto();
-        
-        
-        
-        if(varasto.tarkistaLogin(ktunnus, salis)) {
-            
+        if(varasto.tarkistaLogin(ktunnus, salis) == null){
+              request.setAttribute("error","Väärä salasana tai käyttätunnus");
+                 
         }else{
-            request.setAttribute("error","Väärä salasana tai käyttätunnus");
-            
+              int id = kayttaja.getKayttajaID();
+              
+             response.sendRedirect("valikko_kayttaja.jsp"); 
+        
+       request.getSession().setAttribute("user", id);
         }
         
         

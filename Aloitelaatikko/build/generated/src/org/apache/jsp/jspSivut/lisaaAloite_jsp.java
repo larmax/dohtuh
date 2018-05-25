@@ -69,7 +69,7 @@ public final class lisaaAloite_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <p>Tästä voit lisätä uuden aloitteen tietokantaan.</p>\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"col-md-6 col-md-offset-0\">\r\n");
-      out.write("                    <form action=\"../../Aloitelaatikko/lisaaAloite\" method=\"post\">\r\n");
+      out.write("                    <form action=\"lisaaaloite\" method=\"post\">\r\n");
       out.write("                        <input type=\"text\" name=\"kayttajaID\" placeholder=\"Käyttäjän ID\"><br>\r\n");
       out.write("                        <input type=\"text\" name=\"aloitenimi\" placeholder=\"Aloitteen nimi\"><br>\r\n");
       out.write("                        <textarea type=\"text\" name=\"aloitekuvaus\" rows=\"5\" cols=\"50\" placeholder=\"Aloitteen kuvaus\"></textarea><br>\r\n");

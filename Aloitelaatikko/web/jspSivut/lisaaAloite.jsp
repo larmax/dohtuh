@@ -26,7 +26,7 @@
                     <p>Tästä voit lisätä uuden aloitteen tietokantaan.</p>
                 </div>
                 <div class="col-md-6 col-md-offset-0">
-                    <form action="../../Aloitelaatikko/lisaaAloite" method="post">
+                    <form action="lisaaaloite" method="post">
                         <input type="text" name="kayttajaID" placeholder="Käyttäjän ID"><br>
                         <input type="text" name="aloitenimi" placeholder="Aloitteen nimi"><br>
                         <textarea type="text" name="aloitekuvaus" rows="5" cols="50" placeholder="Aloitteen kuvaus"></textarea><br>

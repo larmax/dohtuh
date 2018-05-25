@@ -69,7 +69,7 @@ public final class lisaaKayttaja_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <p>Tästä voit lisätä uuden käyttäjän tietokantaan.</p>\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"col-md-6 col-md-offset-0\">\r\n");
-      out.write("                    <form action=\"../../Aloitelaatikko/lisaaKayttaja\" method=\"post\">\r\n");
+      out.write("                    <form action=\"lisaakayttaja\" method=\"post\">\r\n");
       out.write("                        <input type=\"text\" name=\"etunimi\" placeholder=\"Etunimi\"><br>\r\n");
       out.write("                        <input type=\"text\" name=\"sukunimi\" placeholder=\"Sukunimmi\"><br>\r\n");
       out.write("                        <input type=\"email\" name=\"email\" placeholder=\"Email\"><br>\r\n");

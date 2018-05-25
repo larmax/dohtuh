@@ -114,7 +114,7 @@ public class Tietovarasto {
         } finally {
             // Suljetaan yhteysx tietokantaa
             YhteydenHallinta.suljeLause(lisayslause);
-            YhteydenHallinta.suljeYhteys(yhteys);
+            YhteydenHallinta.suljeYhteys(yhteys); 
         }
     }
 
@@ -276,9 +276,7 @@ public class Tietovarasto {
             }
 
             // Määritellään lisäystä varten SQL-lauseet
-            String poistaKayttajaSQL = "UPDATE kayttajat "
-                    + "SET Aktiivinen = \"Poistettu\""
-                    + "WHERE kayttajaID = ?;";
+            String poistaKayttajaSQL = "UPDATE kayttajat  SET Aktiivinen = \"Poistettu\" WHERE kayttajaID = ?;";
 
             System.out.println(poistaKayttajaSQL);
 
@@ -383,8 +381,9 @@ public class Tietovarasto {
         
     }
     
-    public boolean tarkistaLogin (String salis, String knimi){
-        Connection yhteys = null;
+    public Kayttaja tarkistaLogin (String salis, String knimi){
+    
+     Connection yhteys = null;
         PreparedStatement hakulause = null;
         ResultSet tulosjoukko = null;
           try {
@@ -393,34 +392,47 @@ public class Tietovarasto {
             // Tarkistetaan onko yhteys tietokantaan olemassa
             if (yhteys != null) {
                 // Määritellään SQL-lause, jolla haetaan kaikki käyttäjät
-                String haeKaikkiSql = "select salasana from kayttajat WHERE kayttajatunnus = ?" + "select kayttajatunnus from kayttajat WHERE kayttajatunnus = ?";
-                // Suoritetaan tietokantahaku
+                String haeKaikkiSql = "select * FROM kayttajat WHERE kayttajatunnus = ? AND salasana = ?";
+          
+// Suoritetaan tietokantahaku
                 hakulause = yhteys.prepareStatement(haeKaikkiSql);
-         
-                
-                
-                
-                hakulause.setString(1,knimi);
-                hakulause.setString(2,knimi);
+        // Välitetään tunnukset hakulauseelle
+            hakulause.setString(1, kayttajatunnus);
+            hakulause.setString(2, salasana);
+            
+               
+
+                // Lisätään Kayttaja-olio listaan kayttajat
+              
+
+                Kayttaja kayttaja = new Kayttaja(knimi, salis);        
                 // Talletetaan kaikki käyttäjät oliomuuttujaan tulosjoukko
                 tulosjoukko = hakulause.executeQuery();
                 
-                //tarkistetaan kirjautumistiedot
-                String salis2 = tulosjoukko.getString("salasana");
-                String knimi2= tulosjoukko.getString("kayttajatunnus");
-           
-                
-                if(salis2.equals(salis)){
-                    return true;
-                }else{
-                    return false;
+                if (tulosjoukko.next()) {
+                     //tarkistetaan kirjautumistiedot
+                return new Kayttaja(tulosjoukko.getInt("kayttajaID"),
+                        tulosjoukko.getString("etunimi"),
+                        tulosjoukko.getString("sukunimi"),
+                        tulosjoukko.getString("email"),
+                        tulosjoukko.getString("kayttajatunnus"),
+                        tulosjoukko.getString("salasana"),
+                        tulosjoukko.getString("puhelin"),
+                        tulosjoukko.getString("luontipaivays"),
+                        tulosjoukko.getInt("ryhmaID"),
+                        tulosjoukko.getString("aktiivinen"));
                 }
                 
+               
+            } else {
+                // Käyttäjä ei ole tietokannassa, joten kirjautuminen epäonnistui
+                return null;
+            }
                 
-            }  
+              
         } catch (SQLException e) {
             System.out.println("Virhettä pukkaa!" + e.getMessage());
-            return false;
+     
                 
          } finally {
             // Suljetaan yhteydet
@@ -429,7 +441,8 @@ public class Tietovarasto {
             YhteydenHallinta.suljeYhteys(yhteys);
         }
           
-        return false;
+      return null;
     }
     
+
 }
